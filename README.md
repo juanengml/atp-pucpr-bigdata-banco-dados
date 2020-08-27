@@ -1,5 +1,9 @@
 # atp-pucpr-bigdata-banco-dados
 
+# Diagrama 
+![img](https://raw.githubusercontent.com/juanengml/atp-pucpr-bigdata-banco-dados/master/Screenshot_2020-08-27%20A%20Free%20Database%20Designer%20for%20Developers%20and%20Analysts.png)
+link - https://dbdiagram.io/d/5f42bb517b2e2f40e9de75be
+
 ## create ambiente
 Requisitos: Ubuntu 20.04 
 
