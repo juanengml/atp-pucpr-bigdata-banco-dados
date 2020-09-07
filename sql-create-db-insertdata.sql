@@ -93,28 +93,34 @@ ALTER TABLE `dependentes` ADD CONSTRAINT `funcionario_has_dependente` FOREIGN KE
 	insert into funcionario (cpf,nome,sexo, data_nascimento,salario, id_projeto,id_departamento,percentual_recebido)
 	     values (235600,"Alexandre Duarte Pinheiro","Masculino", '1997-12-04', 5000,1,1,20);     
 
---- insert dependentes
+---insert dependentes
 
-insert into dependentes(nome,sexo,id_funcionario)
-
-values ("Duarte Jr","Masculino",12),
-	("Roger Siqueira","Masculino",11),
-	("Francisca Divina","Feminina",10),
-	("JoseMar Lucio","Masculino",5),
-	("Ada Byron","Feminino",1);
+       insert into dependentes(nome,sexo,id_funcionario) values ("Duarte Jr","Masculino",12);
+       insert into dependentes(nome,sexo,id_funcionario) values ("Roger Siqueira","Masculino",11);
+       insert into dependentes(nome,sexo,id_funcionario) values	("Francisca Divina","Feminina",10);
+       insert into dependentes(nome,sexo,id_funcionario) values ("JoseMar Lucio","Masculino",5);
+       insert into dependentes(nome,sexo,id_funcionario) values ("Ada Byron","Feminino",1);
 
 --- atp 3 - create proc 
 
-BEGIN TRANSACTION
 
-UPDATE FROM funcionario
-SET salario 50.000
-WHERE salario < 50.000
-SAVEPOINT
-
-INSERT INTO funcionario SELECT salario
-
-IF "*percentual_recebido*" = 20
-COMMIT 
-ELSE 
-ROLLBACK
+----------------- zuado não usar
+----CREATE PROCEDURE UPSALARIO()
+----	IF (SELECT percentual_recebido FROM funcionario) = 20
+----	   select concat("Percentual Salarial Aumentado: ",20)
+----	ELSE 
+----	   select concat("Percentual Salarial nao Aumentado: ",10)
+	    
+  
+----CREATE PROCEDURE UPSALARIO()
+ ----BEGIN
+    ----DECLARE PERCENTUAL DECIMAL DEFAULT 0
+    ----SELECT percentual_recebido 
+    ----INTO PERCENTUAL
+----    FROM funcionario
+----    IF PERCENTUAL = 20 THEN
+----        select concat("Salario: ",8000)
+----    ELSE
+----        select concat("Salario: ",2000)
+ ----END;
+----CALL UPSALARIO(20);
