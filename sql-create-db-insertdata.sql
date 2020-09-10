@@ -103,24 +103,19 @@ ALTER TABLE `dependentes` ADD CONSTRAINT `funcionario_has_dependente` FOREIGN KE
 
 --- atp 3 - create proc 
 
+CREATE PROCEDURE UP_SALARIO(Percentual Integer)
+    UPDATE funcionario
+    SET salario = salario + salario * (Percentual)/100;
+    
+CALL UP_SALARIO(20);
 
------------------ zuado não usar
-----CREATE PROCEDURE UPSALARIO()
-----	IF (SELECT percentual_recebido FROM funcionario) = 20
-----	   select concat("Percentual Salarial Aumentado: ",20)
-----	ELSE 
-----	   select concat("Percentual Salarial nao Aumentado: ",10)
-	    
-  
-----CREATE PROCEDURE UPSALARIO()
- ----BEGIN
-    ----DECLARE PERCENTUAL DECIMAL DEFAULT 0
-    ----SELECT percentual_recebido 
-    ----INTO PERCENTUAL
-----    FROM funcionario
-----    IF PERCENTUAL = 20 THEN
-----        select concat("Salario: ",8000)
-----    ELSE
-----        select concat("Salario: ",2000)
- ----END;
-----CALL UPSALARIO(20);
+CREATE VIEW vw_empregados_dependentes AS
+    SELECT 
+        funcionario.nome AS 'Nome',
+        dependentes.nome AS 'Dependente'
+    FROM
+        (funcionario
+        JOIN dependentes ON ((funcionario.id_funcionario = dependentes.id_funcionario)));
+	 
+select * from vw_empregados_dependentes;
+	 
